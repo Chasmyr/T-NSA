@@ -1,0 +1,8 @@
+[frontend]
+server1 ansible_host=http://localhost:5432/
+
+[backend]
+server2 ansible_host=http://localhost:4000/
+
+[database]
+server3 ansible_host=http://localhost:8080/ 

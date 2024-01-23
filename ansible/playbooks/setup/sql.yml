@@ -1,0 +1,14 @@
+---
+- hosts: database
+  become: true
+
+  roles:
+    - name: common
+      tags:
+        - common
+
+    - name: mysql
+      tags:
+        - mysql
+
+    # Ajouter d'autres rôles ou tâches spécifiques à la base de données au besoin

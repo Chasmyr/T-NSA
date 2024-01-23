@@ -1,0 +1,18 @@
+---
+- hosts: backend
+  become: true
+
+  roles:
+    - name: common
+      tags:
+        - common
+
+    - name: mysql
+      tags:
+        - mysql
+
+    - name: laravel
+      tags:
+        - laravel
+
+    # Ajouter d'autres rôles ou tâches spécifiques au backend au besoin

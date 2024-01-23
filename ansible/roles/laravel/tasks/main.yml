@@ -1,0 +1,51 @@
+---
+- name: Install required dependencies for Laravel
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - php
+    - composer
+    - curl
+    - unzip
+  become: true
+
+- name: Install Node.js and npm for Laravel Mix
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - nodejs
+    - npm
+  become: true
+
+- name: Install PHP and required extensions for Laravel
+  include_role:
+    name: geerlingguy.php
+    tasks_from: install.yml
+  vars:
+    php_version: "7.1.3"
+    php_extensions:
+      - mbstring
+      - xml
+      - bcmath
+  become: true
+
+- name: Clone Laravel repository from Git
+  git:
+    repo: "your_laravel_repo_url"
+    dest: "/path/to/your/laravel/app"
+    version: "master"  # Specify the branch or tag you want to clone
+  become: true
+
+- name: Install Laravel dependencies using Composer
+  command: "composer install --no-interaction --no-ansi --no-progress --prefer-dist"
+  args:
+    chdir: "/path/to/your/laravel/app"
+  become: true
+
+- name: Copy environment file for Laravel
+  template:
+    src: .env.laravel.j2
+    dest: "/path/to/your/laravel/app/.env"
+  become: true

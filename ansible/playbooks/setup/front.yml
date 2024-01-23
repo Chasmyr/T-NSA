@@ -1,0 +1,14 @@
+---
+- hosts: frontend
+  become: true
+
+  roles:
+    - name: common
+      tags:
+        - common
+
+    - name: angular
+      tags:
+        - angular
+
+    # Ajouter d'autres rôles ou tâches spécifiques au frontend au besoin

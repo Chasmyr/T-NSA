@@ -1,0 +1,22 @@
+---
+- hosts: all
+  become: true
+
+  roles:
+    - name: common
+      tags:
+        - common
+
+    - name: mysql
+      tags:
+        - mysql
+
+    - name: angular
+      tags:
+        - angular
+
+    - name: laravel
+      tags:
+        - laravel
+
+    # Ajouter d'autres rôles ou tâches communes à tous les serveurs au besoin

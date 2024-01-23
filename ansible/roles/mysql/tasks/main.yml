@@ -1,0 +1,24 @@
+---
+- name: MySQL task 1
+  # Installer le serveur MySQL
+  apt:
+    name: mysql-server
+    state: present
+  become: true
+
+- name: MySQL task 2
+  # Installer le client MySQL
+  apt:
+    name: mysql-client
+    state: present
+  become: true
+
+- name: MySQL task 3
+  # Assurer que le service MySQL est démarré et activé
+  service:
+    name: mysql
+    state: started
+    enabled: yes
+  become: true
+
+# Ajouter d'autres tâches MySQL au besoin, comme la configuration du mot de passe root, la création de bases de données,
