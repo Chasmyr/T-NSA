@@ -3,16 +3,9 @@
   become: true
 
   roles:
-    - name: common
-      tags:
-        - common
-
-    - name: mysql
-      tags:
-        - mysql
-
-    - name: laravel
-      tags:
-        - laravel
+    - php
+    - nginx_back
+    - composer
+    - env_back
 
     # Ajouter d'autres rôles ou tâches spécifiques au backend au besoin
