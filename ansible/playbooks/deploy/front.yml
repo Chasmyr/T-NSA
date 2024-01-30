@@ -1,0 +1,25 @@
+---
+- hosts: frontend
+  tasks:
+    - name: stop nginx server
+      service: name=nginx state=stopped enabled=no
+
+    - name: deleting destination folder
+      file:
+        state: absent
+        path: "/var/www/front"
+
+    - name: recreating destination folder
+      file:
+        state: directory
+        path: "/var/www/front"
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+
+    - name: copy project
+      ansible.builtin.copy:
+        src: ~/code/T-NSA/front/
+        dest: /var/www/front
+
+    - name: restart nginx server
+      service: name=nginx state=restarted enabled=yes
