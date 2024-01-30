@@ -1,6 +1,9 @@
 ---
-- name: Angular setup task
-  shell:  |
-    npm install -g angular
-    npm install -g ng
-    npm install -g @angular/cli
+- name: install angular packages
+  npm:
+    global: yes
+    name: "@angular/cli"
+    version: "7.1.4"
+  become: yes
+  tags:
+    - install

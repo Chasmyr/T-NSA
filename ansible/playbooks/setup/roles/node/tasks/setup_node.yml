@@ -1,12 +1,30 @@
 ---
-- name: update
+- name: apt update before installing
   apt:
-    update_cache: yes
+    update_cache: yes 
 
-- name: install nodejs
+- name: install git
+  become: yes
   apt:
-    name: nodejs
+    name: git
 
-- name: install npm
-  apt:
-    name: npm
+- name: Install nvm
+  git: repo=https://github.com/creationix/nvm.git dest=~/.nvm version=v0.33.11
+  tags: nvm
+
+- name: Source nvm in ~/.{{ item }}
+  lineinfile: >
+      dest=~/.{{ item }}
+      line="source ~/.nvm/nvm.sh"
+      create=yes
+  tags: nvm
+  with_items:
+    - bashrc
+    - profile
+
+- name: install nodejs 10.9 with nvm
+  become: yes
+  become_user: root
+  shell: "source /root/.nvm/nvm.sh && nvm install 10.9.0" 
+  args:
+    executable: /bin/bash

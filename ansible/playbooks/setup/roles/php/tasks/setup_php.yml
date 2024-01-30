@@ -19,7 +19,7 @@
 - name: Installation des paquets PHP
   apt:
     name:
-      - php7.4
+      - php7.3
       - openssl
       - php-common
       - php-curl
