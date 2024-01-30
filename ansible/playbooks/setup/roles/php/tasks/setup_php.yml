@@ -1,31 +1,26 @@
 ---
-- name: update
-  apt:
-    update_cache: yes
-
 - name: Install required packages
   apt:
-    name: 
-      - lsb-release
-      - apt-transport-https
-      - ca-certificates
-      - software-properties-common
-
-- name: Add PHP repository
-  get_url:
-    url: https://packages.sury.org/php/apt.gpg
-    dest: /etc/apt/trusted.gpg.d/php.gpg
-
-- name: Installation des paquets PHP
-  apt:
-    name:
-      - php7.3
-      - openssl
-      - php-common
-      - php-curl
-      - php-json
-      - php-mbstring
-      - php-mysql
-      - php-xml
-      - php-zip
+    name: "{{ required_packages }}"
     state: present
+    update_cache: yes
+  become: yes
+
+- name: Add Sury's APT key
+  apt_key: 
+    url: "{{ php_key_url }}"
+    state: present
+
+- name: Add Sury repository
+  ansible.builtin.apt_repository:
+    repo: "deb {{ php_repo_url }} {{ ansible_distribution_release }} main"
+    state: present
+    update_cache: yes
+  become: yes 
+
+- name: Install php
+  apt:
+    name: "{{ php_packages }}"
+    state: present
+    update_cache: yes
+  become: yes

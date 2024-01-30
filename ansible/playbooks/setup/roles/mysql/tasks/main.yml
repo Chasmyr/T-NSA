@@ -5,3 +5,5 @@
 # Setup/install tasks
 - ansible.builtin.include_tasks: setup_mysql.yml
   when: ansible_os_family == 'Debian'
+
+- ansible.builtin.include_tasks: config.yml

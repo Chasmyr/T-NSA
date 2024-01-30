@@ -4,7 +4,6 @@
 
   roles:
     - php
-    - nginx_back
     - composer
     - env_back
 

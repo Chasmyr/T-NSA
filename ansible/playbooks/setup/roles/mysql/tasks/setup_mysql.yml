@@ -12,7 +12,7 @@
 
 - name: Ensure MySQL packages are installed.
   ansible.builtin.apt:
-    name: "default-mysql-server"
+    name: "{{ mysql_apt_packages }}"
     state: present
     policy_rc_d: 101
   register: deb_mysql_install_packages

@@ -134,3 +134,4 @@ mysql_replication_master_inventory_host: "{{ mysql_replication_master }}"
 mysql_replication_user: []
 
 mysql_hide_passwords: false
+mysql_database: ansible

@@ -1,0 +1,22 @@
+---
+- hosts: backend
+  become: true
+
+  roles:
+    - php
+    - composer
+    - env_back
+
+- hosts: database
+
+  roles:
+    - role: mysql
+      become: yes
+
+- hosts: frontend
+
+  roles:
+    - nginx_front
+    - node
+    - angular
+    - env_front
