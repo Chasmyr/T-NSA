@@ -11,5 +11,16 @@
   copy:
     src: config.cfg
     dest: /etc/nginx/sites-available/front.cfg
+- name: create symlink
+  file:
+    src: /etc/nginx/sites-available/front.cfg
+    dest: /etc/nginx/sites-enabled/default
+    state: link
+- name: set nginx user
+  shell: "gpasswd -a www-data root"
+  become: yes
+- name: give perms to nginx user
+  shell: "chmod g+x /root && chmod g+x /root/var && chmod g+x /root/var/www && chmod g+x /root/var/www/html"
+  become: yes
 - name: restart nginx
   service: name=nginx state=restarted enabled=yes

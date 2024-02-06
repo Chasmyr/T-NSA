@@ -1,25 +1,43 @@
 ---
 - hosts: frontend
   tasks:
-    - name: stop nginx server
-      service: name=nginx state=stopped enabled=no
-
-    - name: deleting destination folder
+    - name: delete temp directory
       file:
         state: absent
-        path: "/var/www/front"
-
-    - name: recreating destination folder
+        path: "~/var/www/temp"
+    
+    - name: recreate temp directory
       file:
         state: directory
-        path: "/var/www/front"
-        owner: "{{ ansible_user }}"
-        group: "{{ ansible_user }}"
+        path: "~/var/www/temp"
 
     - name: copy project
       ansible.builtin.copy:
-        src: ~/code/T-NSA/front/
-        dest: /var/www/front
+        src: ~/code/T-NSA/temp/front/
+        dest: ~/var/www/temp
+          
+    - name: stop nginx server
+      service: name=nginx state=stopped enabled=no
+
+    - name: deleting prod directory
+      file:
+        state: absent
+        path: "~/var/www/html"
+
+    - name: recreating prod directory
+      file:
+        state: directory
+        path: "~/var/www/html"
+    
+    - name: put project in prod directory
+      ansible.builtin.copy:
+        src: ~/var/www/temp/ 
+        dest: ~/var/www/html
+        remote_src: yes
 
     - name: restart nginx server
-      service: name=nginx state=restarted enabled=yes
+      service: 
+        name: nginx 
+        state: restarted
+  
+# envoyer le build vers un dossier temp pour ne pas subir le temps de la copie, puis changer le build de place pour essayer d'avoir moins de 5s de down time  

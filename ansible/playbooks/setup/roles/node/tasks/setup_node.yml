@@ -24,7 +24,6 @@
 
 - name: install nodejs 10.9 with nvm
   become: yes
-  become_user: root
   shell: "source /root/.nvm/nvm.sh && nvm install 10.9.0" 
   args:
     executable: /bin/bash
