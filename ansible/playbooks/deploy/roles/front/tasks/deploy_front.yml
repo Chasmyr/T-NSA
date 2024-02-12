@@ -1,0 +1,38 @@
+- name: delete temp directory
+  file:
+    state: absent
+    path: "~/var/www/temp"
+    
+- name: recreate temp directory
+  file:
+    state: directory
+    path: "~/var/www/temp"
+
+- name: copy project
+   ansible.builtin.copy:
+    src: ~/code/T-NSA/temp/front/
+    dest: ~/var/www/temp
+          
+- name: stop nginx server
+  service: name=nginx state=stopped enabled=no
+
+- name: deleting prod directory
+  file:
+    state: absent
+    path: "~/var/www/html"
+
+- name: recreating prod directory
+  file:
+    state: directory
+    path: "~/var/www/html"
+    
+- name: put project in prod directory
+  ansible.builtin.copy:
+    src: ~/var/www/temp/ 
+    dest: ~/var/www/html
+    remote_src: yes
+
+- name: restart nginx server
+  service: 
+    name: nginx 
+    state: restarted
