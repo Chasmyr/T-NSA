@@ -2,9 +2,9 @@
 - hosts: backend
 
   roles:
-    #- copy_project
-    #- back_env
+    - copy_project
+    - back_env
     - nginx_stop
-    #- migrations
+    - migrations
     - set_prod_dir
     - nginx_start

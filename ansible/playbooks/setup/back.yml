@@ -2,9 +2,9 @@
 - hosts: backend
 
   roles:
-    # - env_back
+    - env_back
     - nginx_back
-    # - php
-    # - composer
+    - php
+    - composer
 
     # Ajouter d'autres rôles ou tâches spécifiques au backend au besoin
