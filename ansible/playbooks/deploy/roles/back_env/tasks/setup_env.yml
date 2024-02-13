@@ -38,13 +38,6 @@
     regexp: "DB_PASSWORD="
     line: 'DB_PASSWORD={{ DB_PASSWORD }}'
 
-- name: Replace app debug
-  become: yes
-  lineinfile:
-    dest: '{{ laravel_root_dir }}/.env'
-    regexp: "APP_DEBUG="
-    line: 'APP_DEBUG={{ APP_DEBUG }}'
-
 - name: Replace app env
   become: yes
   lineinfile:

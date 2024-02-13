@@ -13,3 +13,16 @@
     src: ~/var/www/temp/ 
     dest: ~/var/www/back
     remote_src: yes
+
+- name: set user
+  shell: 
+    cmd: >
+      chown -R www-data:www-data /root/var/www/back
+  become: yes
+
+- name: set permissions
+  shell: 
+    cmd: >
+      chmod -R 775 storage
+    chdir: /root/var/www/back
+  become: yes
