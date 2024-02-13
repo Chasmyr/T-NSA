@@ -1,7 +1,35 @@
 ---
-- name: allow all ips to connect to the db
-  command: rpl "127.0.0.1" "0.0.0.0" /etc/mysql/my.cnf
+- name: allow remote connections to the database 1/2
   become: yes
+  lineinfile:
+    line: "[mysqld]"
+    path: /etc/mysql/my.cnf
+    state: present
+
+- name: allow remote connections to the database 2/2
+  become: yes
+  lineinfile:
+    regexp: bind-address = *
+    insertafter: "[mysqld]"
+    line: "bind-address = 0.0.0.0"
+    path: /etc/mysql/my.cnf
+    state: present
+
+- name: ensure database exists
+  become: yes
+  community.mysql.mysql_db:
+    name: laravel
+    state: present
+    login_unix_socket: /run/mysqld/mysqld.sock
+
+- name: ensure that the user exists
+  become: true
+  mysql_user:
+    name: root
+    password: root
+    host: '%'
+    priv: "laravel.*:ALL,GRANT"
+    state: present
 
 - name: restart to take changes into account
   become: yes
