@@ -1,0 +1,14 @@
+- name: delete temp directory
+  file:
+    state: absent
+    path: "~/var/www/temp"
+    
+- name: recreate temp directory
+  file:
+    state: directory
+    path: "~/var/www/temp"
+
+- name: copy project
+  ansible.builtin.copy:
+    src: ~/code/T-NSA/back/
+    dest: ~/var/www/temp

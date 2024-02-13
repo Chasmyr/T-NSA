@@ -1,6 +1,13 @@
 ---
-- name: install composer
-  apt:
-    name: "{{ composer_apt_packages }}"
-    state: present
+- name: Download composer
+  script: install_composer.sh
+
+- name: Move Composer Globally
   become: yes
+  command: mv composer.phar /usr/local/bin/composer
+
+- name: Set permissions on Composer
+  become: yes
+  file:
+    path: /usr/local/bin/composer
+    mode: "a+x"

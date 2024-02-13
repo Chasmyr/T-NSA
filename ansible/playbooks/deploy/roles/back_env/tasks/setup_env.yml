@@ -1,0 +1,65 @@
+- name: copy .env.example
+  ansible.builtin.copy:
+    src: ~/code/T-NSA/back/.env.example
+    dest: ~/var/www/temp/.env   
+
+- name: Replace db host
+  become: yes
+  lineinfile:
+    dest: '{{ laravel_root_dir }}/.env'
+    regexp: "DB_HOST="
+    line: "DB_HOST={{ DB_HOST }}"
+
+- name: Replace db port
+  become: yes
+  lineinfile:
+    dest: '{{ laravel_root_dir }}/.env'
+    regexp: "DB_PORT="
+    line: 'DB_PORT={{ DB_PORT }}'
+
+- name: Replace db database
+  become: yes
+  lineinfile:
+    dest: '{{ laravel_root_dir }}/.env'
+    regexp: "DB_DATABASE="
+    line: 'DB_DATABASE={{ DB_DATABASE }}'
+
+- name: Replace db username
+  become: yes
+  lineinfile:
+    dest: '{{ laravel_root_dir }}/.env'
+    regexp: "DB_USERNAME="
+    line: 'DB_USERNAME={{ DB_USERNAME }}'
+
+- name: Replace db password
+  become: yes
+  lineinfile:
+    dest: '{{ laravel_root_dir }}/.env'
+    regexp: "DB_PASSWORD="
+    line: 'DB_PASSWORD={{ DB_PASSWORD }}'
+
+- name: Replace app debug
+  become: yes
+  lineinfile:
+    dest: '{{ laravel_root_dir }}/.env'
+    regexp: "APP_DEBUG="
+    line: 'APP_DEBUG={{ APP_DEBUG }}'
+
+- name: Replace app env
+  become: yes
+  lineinfile:
+    dest: '{{ laravel_root_dir }}/.env'
+    regexp: "APP_ENV="
+    line: 'APP_ENV={{ APP_ENV }}'
+
+- name: composer install
+  composer:
+    command: install
+    working_dir: "{{ laravel_root_dir }}"
+  become: yes
+
+- name: composer update and optimize
+  composer:
+    command: update --optimize-autoloader
+    working_dir: "{{ laravel_root_dir }}"
+  become: yes

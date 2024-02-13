@@ -1,0 +1,15 @@
+- name: deleting prod directory
+  file:
+    state: absent
+    path: "~/var/www/back"
+
+- name: recreating prod directory
+  file:
+    state: directory
+    path: "~/var/www/back"
+    
+- name: put project in prod directory
+  ansible.builtin.copy:
+    src: ~/var/www/temp/ 
+    dest: ~/var/www/back
+    remote_src: yes

@@ -1,0 +1,8 @@
+laravel_root_dir: /root/var/www/back
+DB_PORT: "3307"
+DB_DATABASE: "NSA"
+DB_USERNAME: "root"
+DB_PASSWORD: "root"
+DB_HOST: "138.68.162.162"
+APP_DEBUG: "false"
+APP_ENV: "production"
