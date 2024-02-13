@@ -1,2 +1,11 @@
 - name: apply migrations
-  shell: php artisan migrate
+  shell: 
+    cmd: php artisan migrate --force
+    chdir: /root/var/www/temp
+  become: yes
+
+- name: seed database
+  shell: 
+    cmd: php artisan db:seed --force
+    chdir: /root/var/www/temp
+  become: yes

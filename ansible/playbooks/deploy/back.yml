@@ -4,7 +4,7 @@
   roles:
     - copy_project
     - back_env
-    # - nginx_stop
-    # - migrations
-    # - set_prod_dir
-    # - nginx_start
+    - nginx_stop
+    - migrations
+    - set_prod_dir
+    - nginx_start

@@ -23,7 +23,7 @@
     login_unix_socket: /run/mysqld/mysqld.sock
 
 - name: ensure that the user exists
-  become: true
+  become: yes
   mysql_user:
     name: root
     password: root
