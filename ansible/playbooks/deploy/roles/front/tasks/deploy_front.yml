@@ -10,7 +10,7 @@
 
 - name: copy project
    ansible.builtin.copy:
-    src: ~/code/T-NSA/temp/front/
+    src: /builds/d4v1dh/test/app/front/dist/front/
     dest: ~/var/www/temp
           
 - name: stop nginx server
