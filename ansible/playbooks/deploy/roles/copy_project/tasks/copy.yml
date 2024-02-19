@@ -10,5 +10,5 @@
 
 - name: copy project
   ansible.builtin.copy:
-    src: /builds/d4v1dh/test/app/front/dist/front/
+    src: /builds/d4v1dh/test/app/back/
     dest: ~/var/www/temp
