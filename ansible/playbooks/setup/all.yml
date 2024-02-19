@@ -3,10 +3,10 @@
   become: true
 
   roles:
+    - env_back
     - nginx_back
     - php
     - composer
-    - env_back
 
 - hosts: database
 
@@ -17,7 +17,7 @@
 - hosts: frontend
 
   roles:
+    - env_front
     - nginx_front
     - node
     - angular
-    - env_front
