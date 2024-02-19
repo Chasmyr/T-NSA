@@ -1,6 +1,6 @@
 - name: copy .env.example
   ansible.builtin.copy:
-    src: ~/code/T-NSA/back/.env.example
+    src: /builds/d4v1dh/test/app/back/.env.example
     dest: ~/var/www/temp/.env   
 
 - name: Replace db host

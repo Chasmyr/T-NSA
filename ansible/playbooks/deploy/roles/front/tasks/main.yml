@@ -1,2 +1,2 @@
 ---
-import_tasks: deploy_front.yml
+- import_tasks: deploy_front.yml

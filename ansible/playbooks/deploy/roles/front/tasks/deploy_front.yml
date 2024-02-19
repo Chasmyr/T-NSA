@@ -9,7 +9,7 @@
     path: "~/var/www/temp"
 
 - name: copy project
-   ansible.builtin.copy:
+  ansible.builtin.copy:
     src: /builds/d4v1dh/test/app/front/dist/front/
     dest: ~/var/www/temp
           

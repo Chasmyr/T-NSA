@@ -2,4 +2,4 @@
 - hosts: frontend
 
   roles:
-    - deploy_front
+    - front
