@@ -6,3 +6,8 @@
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     recurse: yes
+
+- name: install rsync
+  package:
+    name: rsync
+    state: present

@@ -11,3 +11,8 @@
   become: yes
   apt:
     name: git
+
+- name: install rsync
+  package:
+    name: rsync
+    state: present
