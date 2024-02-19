@@ -9,7 +9,7 @@
     path: "~/var/www/back"
     
 - name: put project in prod directory
-  ansible.builtin.synchronize:
+  ansible.builtin.copy:
     src: ~/var/www/temp/ 
     dest: ~/var/www/back
     remote_src: yes

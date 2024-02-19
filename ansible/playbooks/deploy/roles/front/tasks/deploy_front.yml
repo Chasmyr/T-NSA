@@ -9,7 +9,7 @@
     path: "~/var/www/temp"
 
 - name: copy project
-  ansible.builtin.synchronize:
+  ansible.posix.synchronize:
     src: /builds/d4v1dh/test/app/front/dist/front/
     dest: ~/var/www/temp
           
@@ -27,7 +27,7 @@
     path: "~/var/www/html"
     
 - name: put project in prod directory
-  ansible.builtin.synchronize:
+  ansible.builtin.copy:
     src: ~/var/www/temp/ 
     dest: ~/var/www/html
     remote_src: yes

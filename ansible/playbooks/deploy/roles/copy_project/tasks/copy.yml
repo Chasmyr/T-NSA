@@ -9,6 +9,6 @@
     path: "~/var/www/temp"
 
 - name: copy project
-  ansible.builtin.synchronize:
+  ansible.posix.synchronize:
     src: /builds/d4v1dh/test/app/back/
     dest: ~/var/www/temp
