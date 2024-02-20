@@ -4,5 +4,5 @@
   roles:
     - env_front
     - nginx_front
-    - node
-    - angular
+    # - node
+    # - angular
