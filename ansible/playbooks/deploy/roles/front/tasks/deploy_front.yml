@@ -10,7 +10,7 @@
 
 - name: copy project
   ansible.posix.synchronize:
-    src: /builds/d4v1dh/test/app/front/dist/front/
+    src: /builds/d4v1dh/T-NSA-700/app/front/dist/front/
     dest: ~/var/www/temp
           
 - name: stop nginx server
