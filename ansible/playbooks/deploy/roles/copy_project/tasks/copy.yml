@@ -10,5 +10,5 @@
 
 - name: copy project
   ansible.posix.synchronize:
-    src: /builds/d4v1dh/T-NSA-700/app/back/
+    src: /builds/d4v1dh/t-nsa-700/app/back/
     dest: ~/var/www/temp
