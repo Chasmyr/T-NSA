@@ -1,0 +1,22 @@
+---
+- name: ensure database exists
+  become: yes
+  community.mysql.mysql_db:
+    name: laravel
+    state: present
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+
+- name: ensure that the user exists
+  become: yes
+  mysql_user:
+    name: root
+    password: root
+    host: '%'
+    priv: "laravel.*:ALL,GRANT"
+    state: present
+
+- name: restart to take changes into account
+  become: yes
+  service:
+    name: mysqld
+    state: restarted

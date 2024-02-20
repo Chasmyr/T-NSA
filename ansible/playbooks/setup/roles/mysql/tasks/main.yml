@@ -7,3 +7,5 @@
   when: ansible_os_family == 'Debian'
 
 - ansible.builtin.include_tasks: config.yml
+
+- ansible.builtin.include_tasks: create_database.yml
